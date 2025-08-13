@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1754925332737-1
+      author: chakir
+      changes:
+        - insert:
+            preConditions:
+              - onFail: MARK_RAN
+              - sqlCheck:
+                  expectedResult: "0"
+                  sql: "SELECT count(*) FROM product WHERE name = 'Phone'"
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Phone"
+              - column:
+                  name: price
+                  value: "999.99"
+        - insert:
+            preConditions:
+              - onFail: MARK_RAN
+              - sqlCheck:
+                  expectedResult: "0"
+                  sql: "SELECT count(*) FROM product WHERE name = 'Laptop'"
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Laptop"
+              - column:
+                  name: price
+                  value: "1499.99"
+        - insert:
+            preConditions:
+              - onFail: MARK_RAN
+              - sqlCheck:
+                  expectedResult: "0"
+                  sql: "SELECT count(*) FROM product WHERE name = 'Tablet'"
+            tableName: product
+            columns:
+              - column:
+                  name: name
+                  value: "Tablet"
+              - column:
+                  name: price
+                  value: "599.99"
