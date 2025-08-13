@@ -29,8 +29,16 @@ public class ProductController {
         return "products";
     }
 
+    @GetMapping("/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("newProduct", new Product());
+        return "create-product";
+    }
+
     @PostMapping
-    public String createProduct(@ModelAttribute("product") Product product) {
+    public String createProduct(@ModelAttribute("newProduct") Product product, Model model) {
+        Product savedProduct = productService.createProduct(product);
+        model.addAttribute("product", savedProduct);
         return "product-detail";
     }
 }
